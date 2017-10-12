@@ -10,10 +10,12 @@ import kotlinx.android.synthetic.main.activity_skill.*
 
 class SkillActivity : BaseActivity() {
 
+    var player = Player("","")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
-        var player = intent.getParcelableExtra<Player>(EXTRA_PLAYER)
+        player = intent.getParcelableExtra<Player>(EXTRA_PLAYER)
 
         skillFinishBtn.setOnClickListener{
             if (player.skill != "") {
@@ -34,7 +36,16 @@ class SkillActivity : BaseActivity() {
             begingerSkillBtn.isChecked = false
             player.skill = "baller"
         }
+    }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        player = savedInstanceState?.getParcelable<Player>(EXTRA_PLAYER) ?: Player("","")
     }
 
 }
