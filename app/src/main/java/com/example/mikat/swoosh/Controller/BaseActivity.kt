@@ -1,4 +1,4 @@
-package com.example.mikat.swoosh
+package com.example.mikat.swoosh.Controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
